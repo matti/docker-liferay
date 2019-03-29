@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shell
+  namespace: liferaynetes
+spec:
+  selector:
+    matchLabels:
+      app: shell
+  template:
+    metadata:
+      labels:
+        app: shell
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+      - name: shell
+        image: mattipaksula/shell:alpine-slim
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

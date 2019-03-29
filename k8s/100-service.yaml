@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: liferaynetes
+spec:
+  selector:
+    app: web
+  ports:
+  - port: 8080
+    targetPort: 8080
+  clusterIP: None
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-0
+  namespace: liferaynetes
+spec:
+  selector:
+    statefulset.kubernetes.io/pod-name: web-0
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-1
+  namespace: liferaynetes
+spec:
+  selector:
+    statefulset.kubernetes.io/pod-name: web-1
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-2
+  namespace: liferaynetes
+spec:
+  selector:
+    statefulset.kubernetes.io/pod-name: web-2
+  ports:
+  - port: 8080
+    targetPort: 8080

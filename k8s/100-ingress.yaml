@@ -1,0 +1,36 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: web
+  namespace: liferaynetes
+spec:
+  rules:
+  - host: liferaynetes.localtest.me
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web
+          servicePort: 8080
+  - host: 0.liferaynetes.localtest.me
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web-0
+          servicePort: 8080
+  - host: 1.liferaynetes.localtest.me
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web-1
+          servicePort: 8080
+  - host: 2.liferaynetes.localtest.me
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web-2
+          servicePort: 8080

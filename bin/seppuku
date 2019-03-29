@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+set -e
+
+set +e
+  docker-compose rm --force
+  docker volume rm liferaynetes_postgres_1
+set -e
+
+echo "OK"
