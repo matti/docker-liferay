@@ -3,7 +3,7 @@ set -e
 
 set +e
   docker-compose rm --force
-  docker volume rm liferaynetes_postgres_1
+  docker volume rm liferaynetes_postgres-data
 set -e
 
 echo "OK"

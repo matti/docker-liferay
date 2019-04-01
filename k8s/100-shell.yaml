@@ -17,6 +17,9 @@ spec:
       - name: shell
         image: mattipaksula/shell:alpine-slim
         resources:
+          requests:
+            memory: "128Mi"
+            cpu: "0.1"
           limits:
             memory: "128Mi"
-            cpu: "500m"
+            cpu: "8"

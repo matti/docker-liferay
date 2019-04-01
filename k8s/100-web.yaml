@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: web
+  namespace: liferaynetes
+spec:
+  serviceName: liferay
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      terminationGracePeriodSeconds: 0
+      initContainers:
+      - name: init-myapp
+        image: busybox
+        command: ['sh', '-c', 'chown 1000:1000 /app/data/document_library' ]
+        volumeMounts:
+          - name: document-library
+            mountPath: "/app/data/document_library"
+      containers:
+      - name: web
+        image: mattipaksula/liferaynetes
+        resources:
+          requests:
+            memory: "512M"
+            cpu: "2"
+          limits:
+            memory: "4Gi"
+            cpu: "8"
+        volumeMounts:
+          - name:  document-library
+            mountPath: /app/data/document_library
+        env:
+          - name: STARTUP_DELAY_MULTIPLIER
+            value: "15"
+          - name: MAX_RAM_PERCENTAGE
+            value: "25"
+          - name: MEMORY_LIMIT_BYTES
+            valueFrom:
+              resourceFieldRef:
+                resource: limits.memory
+      volumes:
+        - name: document-library
+          persistentVolumeClaim:
+            claimName: nfs-claim
