@@ -1,10 +1,6 @@
 # liferaynetes
 
 
-    brew install git-lfs
-    git lfs install
-
-
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/mandatory.yaml
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/provider/cloud-generic.yaml
 
@@ -23,7 +19,7 @@ java -XX:+PrintFlagsFinal -version | grep -Ei "maxheapsize|maxram"
   --> libfreetype6 ubuntu package provides libfreetype.so.6
   https://bugs.launchpad.net/ubuntu/+source/openjdk-lts/+bug/1780151
   --> then next error is missing libfontconfig1 that is provided by libfontconfig1
- 
+
 ## TODO
 
  - https property

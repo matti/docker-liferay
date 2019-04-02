@@ -9,7 +9,7 @@ _term() {
     set +e
       kill -0 "$tomcat_pid" || break
     set -e
-    
+
     echo "tomcat still alive"
     sleep 1
   done
@@ -76,7 +76,7 @@ set +x
   echo "ordinal: $ordinal"
 
   if [ "${HOSTNAME}" = "${leader_to_wait_for}" ]; then
-    echo "I'm ${leader_to_wait_for}, so I start immediately."  
+    echo "I'm ${leader_to_wait_for}, so I start immediately."
   else
     startup_delay_multiplier=${STARTUP_DELAY_MULTIPLIER:-120}
     startup_delay=$(expr ${ordinal} \* ${startup_delay_multiplier})
@@ -97,8 +97,8 @@ tomcat_pid="$!"
 set +x
 while true; do
   set +e
-    stats=$(ps -eo pcpu,pmem,comm,pid,maj_flt,min_flt,rss,vsz | numfmt --header --to=iec --field 4-5 | numfmt --header --from-unit=1024 --to=iec --field 6-7 | grep java)
-    echo "STATS: ${stats}"
+    mem_stats=$(ps -eo pid,comm,rss | numfmt --header --from-unit=1024 --to=iec --field=3 | grep java | grep "$tomcat_pid" | awk '{print $NF}')
+    echo "MEM: ${mem_stats}"
   set -e
 
   kill -0 "$tomcat_pid" || break

@@ -2,8 +2,7 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: nfs-volume
-  namespace: liferaynetes
+  name: nfs
   labels:
     type: local
 spec:
@@ -18,8 +17,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: nfs-claim
-  namespace: liferaynetes
+  name: nfs
 spec:
   storageClassName: manual
   accessModes:

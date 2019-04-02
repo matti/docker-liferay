@@ -2,10 +2,9 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: web
-  namespace: liferaynetes
 spec:
   serviceName: liferay
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: web
@@ -14,24 +13,9 @@ spec:
       labels:
         app: web
     spec:
-      terminationGracePeriodSeconds: 0
-      initContainers:
-      - name: init-myapp
-        image: busybox
-        command: ['sh', '-c', 'chown 1000:1000 /app/data/document_library' ]
-        volumeMounts:
-          - name: document-library
-            mountPath: "/app/data/document_library"
       containers:
       - name: web
         image: mattipaksula/liferaynetes
-        resources:
-          requests:
-            memory: "512M"
-            cpu: "2"
-          limits:
-            memory: "4Gi"
-            cpu: "8"
         volumeMounts:
           - name:  document-library
             mountPath: /app/data/document_library
@@ -47,4 +31,4 @@ spec:
       volumes:
         - name: document-library
           persistentVolumeClaim:
-            claimName: nfs-claim
+            claimName: nfs

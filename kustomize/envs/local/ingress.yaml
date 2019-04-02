@@ -3,7 +3,6 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: web
-  namespace: liferaynetes
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
 spec:

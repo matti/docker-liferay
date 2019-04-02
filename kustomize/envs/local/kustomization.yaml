@@ -1,0 +1,17 @@
+namespace: liferaynetes
+bases:
+ - ./../base
+ - ./../../components/nfs-hostpath
+ - ./../../components/ingress-nginx
+ - ./../../components/postgres
+# - github.com/matti/ingress-nginx?ref=kustomize_cloud-generic
+
+patchesStrategicMerge:
+- patches/liferay-web.yaml
+
+resources:
+ - namespace.yaml
+ - elasticsearch.yaml
+ - ingress.yaml
+ - service.yaml
+ - shell.yaml
