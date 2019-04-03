@@ -21,9 +21,23 @@ trap _term SIGTERM
 
 echo "Liferaynetes starting"
 
+export DATABASE_HOST=exoliferay-de-cluster.cluster-cbhent2th1nq.eu-central-1.rds.amazonaws.com
+export LIFERAY_COMPANY_PERIOD_DEFAULT_PERIOD_WEB_PERIOD_ID=$HOSTNAME
+export LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_DRIVER_UPPERCASEC_LASS_UPPERCASEN_AME=org.postgresql.Driver
+export LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_URL=jdbc:postgresql://${DATABASE_HOST}:5432/exoliferay_de
+export LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_USERNAME=exoliferay_de
+export LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_PASSWORD=asdf89asdj8fsjad89fjs89dafj98sadf89fadsj89afsd
+
+export
+
+sed -i "s#LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_DRIVER_UPPERCASEC_LASS_UPPERCASEN_AME#$LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_DRIVER_UPPERCASEC_LASS_UPPERCASEN_AME#" jgroups_jdbc_ping.xml
+sed -i "s#LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_URL#$LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_URL#" jgroups_jdbc_ping.xml
+sed -i "s#LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_USERNAME#$LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_USERNAME#" jgroups_jdbc_ping.xml
+sed -i "s#LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_PASSWORD#$LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_PASSWORD#" jgroups_jdbc_ping.xml
+
 while true; do
-  echo "waiting for postgres:5432"
-  nc -w 1 -z postgres 5432 && break
+  echo "waiting for ${DATABASE_HOST}:5432"
+  nc -w 1 -z "${DATABASE_HOST}" 5432 && break
   sleep 1
 done
 

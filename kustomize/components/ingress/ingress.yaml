@@ -7,13 +7,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
 spec:
   rules:
-  - host: liferaynetes.localtest.me
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: web
-          servicePort: 8080
   - host: 0.liferaynetes.localtest.me
     http:
       paths:
@@ -35,24 +28,31 @@ spec:
         backend:
           serviceName: web-2
           servicePort: 8080
-  - host: upload.0.liferaynetes.localtest.me
+  - host: 3.liferaynetes.localtest.me
     http:
       paths:
       - path: /
         backend:
-          serviceName: web-upload-0
-          servicePort: 8081
-  - host: upload.1.liferaynetes.localtest.me
+          serviceName: web-3
+          servicePort: 8080
+  - host: 4.liferaynetes.localtest.me
     http:
       paths:
       - path: /
         backend:
-          serviceName: web-upload-1
-          servicePort: 8081
-  - host: upload.2.liferaynetes.localtest.me
+          serviceName: web-4
+          servicePort: 8080
+  - host: liferaynetes.localtest.me
     http:
       paths:
       - path: /
         backend:
-          serviceName: web-upload-2
-          servicePort: 8081
+          serviceName: web
+          servicePort: 8080
+  - host: "*.liferaynetes.localtest.me"
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web
+          servicePort: 8080

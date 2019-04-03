@@ -1,2 +1,3 @@
 bases:
  - ./../../components/liferay
+ - ./../../components/ingress

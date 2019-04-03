@@ -31,4 +31,4 @@ spec:
       volumes:
         - name: document-library
           persistentVolumeClaim:
-            claimName: nfs
+            claimName: document-library

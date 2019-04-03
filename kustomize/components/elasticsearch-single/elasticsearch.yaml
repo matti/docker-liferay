@@ -13,7 +13,6 @@ spec:
       labels:
         app: elasticsearch
     spec:
-      terminationGracePeriodSeconds: 0
       containers:
       - name: elasticsearch
         image: docker.elastic.co/elasticsearch/elasticsearch:6.5.4

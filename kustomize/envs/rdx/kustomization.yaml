@@ -1,6 +1,0 @@
-namespace: local
-bases:
- - ./../base
-
-patchesStrategicMerge:
-- liferay-web.yaml

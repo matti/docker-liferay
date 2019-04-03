@@ -3,7 +3,16 @@ kind: Config
 build:
   artifacts:
   - image: mattipaksula/liferaynetes
-    context: components/liferay
-deploy:
-  kustomize:
-    path: kustomize/envs/local
+    context: liferay
+  tagPolicy:
+    dateTime:
+      format: 2006-01-02_15-04-05.999_MST
+profiles:
+- name: local
+  deploy:
+    kustomize:
+      path: kustomize/envs/local
+- name: exo
+  deploy:
+    kustomize:
+      path: kustomize/envs/exo

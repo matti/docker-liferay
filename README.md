@@ -20,6 +20,9 @@ java -XX:+PrintFlagsFinal -version | grep -Ei "maxheapsize|maxram"
   https://bugs.launchpad.net/ubuntu/+source/openjdk-lts/+bug/1780151
   --> then next error is missing libfontconfig1 that is provided by libfontconfig1
 
+- https://docs.liferay.com/ce/portal/7.1-latest/propertiesdoc/portal.properties.html
+
+
 ## TODO
 
  - https property

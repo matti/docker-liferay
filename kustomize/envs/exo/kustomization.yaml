@@ -1,0 +1,22 @@
+namespace: exoliferay-de
+bases:
+ - ./../base
+ - ./../../components/letsencrypt-nginx
+ - ./../../components/nfs-pharos-aws-efs
+ - ./../../components/elasticsearch-single
+
+resources:
+ - resources/namespace.yaml
+
+patchesStrategicMerge:
+- patches/liferay.yaml
+- patches/letsencrypt-nginx.yaml
+- patches/ingress.yaml
+
+patchesJson6902:
+- target:
+    group: extensions
+    version: v1beta1
+    kind: Ingress
+    name: web
+  path: patches/ingress.json
