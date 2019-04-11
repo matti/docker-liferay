@@ -1,5 +1,9 @@
 FROM mattipaksula/ubuntu-openjdk-liferay:18.04_11.0.2_7.1.2-ga3-20190107144105508
 
+USER root
+RUN apt-get update && apt-get install -y postgresql-client redis-tools
+USER liferay
+
 ENV LIFERAY_SETUP_PERIOD_WIZARD_PERIOD_ENABLED=false
 ENV LIFERAY_SETUP_PERIOD_WIZARD_PERIOD_ADD_PERIOD_SAMPLE_PERIOD_DATA=false
 

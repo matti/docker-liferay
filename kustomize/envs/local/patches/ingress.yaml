@@ -5,62 +5,52 @@ metadata:
   name: web
 spec:
   rules:
-  - host: 0.exoliferay.de
+  - host: 0.liferaynetes.localtest.me
     http:
       paths:
       - path: /
         backend:
           serviceName: web-0
           servicePort: 8080
-  - host: 1.exoliferay.de
+  - host: 1.liferaynetes.localtest.me
     http:
       paths:
       - path: /
         backend:
           serviceName: web-1
           servicePort: 8080
-  - host: 2.exoliferay.de
+  - host: 2.liferaynetes.localtest.me
     http:
       paths:
       - path: /
         backend:
           serviceName: web-2
           servicePort: 8080
-  - host: 3.exoliferay.de
+  - host: 3.liferaynetes.localtest.me
     http:
       paths:
       - path: /
         backend:
           serviceName: web-3
           servicePort: 8080
-  - host: 4.exoliferay.de
+  - host: 4.liferaynetes.localtest.me
     http:
       paths:
       - path: /
         backend:
           serviceName: web-4
           servicePort: 8080
-  - host: exoliferay.de
+  - host: liferaynetes.localtest.me
     http:
       paths:
       - path: /
         backend:
           serviceName: web
           servicePort: 8080
-  - host: www.exoliferay.de
+  - host: "wwww.liferaynetes.localtest.me"
     http:
       paths:
       - path: /
         backend:
           serviceName: web
           servicePort: 8080
-  tls:
-  - secretName: certificate-secret
-    hosts:
-      - "exoliferay.de"
-      - "www.exoliferay.de"
-      - "0.exoliferay.de"
-      - "1.exoliferay.de"
-      - "2.exoliferay.de"
-      - "3.exoliferay.de"
-      - "4.exoliferay.de"

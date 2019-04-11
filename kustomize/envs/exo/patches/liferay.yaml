@@ -3,9 +3,10 @@ kind: StatefulSet
 metadata:
   name: web
 spec:
-  replicas: 2
+  replicas: 1
   template:
     spec:
+      terminationGracePeriodSeconds: 0 #TODO
       containers:
       - name: web
         resources:
@@ -19,7 +20,7 @@ spec:
           httpGet:
             path: /
             port: 8080
-          initialDelaySeconds: 120
+          initialDelaySeconds: 1
           periodSeconds: 1
           timeoutSeconds: 1
           successThreshold: 1

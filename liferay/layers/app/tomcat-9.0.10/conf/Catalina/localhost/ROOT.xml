@@ -1,0 +1,35 @@
+<Context crossContext="true">
+  <JarScanner className="com.liferay.support.tomcat.util.scan.NOPJarScanner" />
+
+  <!-- JAAS -->
+
+  <!--<Realm className="org.apache.catalina.realm.JAASRealm" appName="PortalRealm" userClassNames="com.liferay.portal.kernel.security.jaas.PortalPrincipal" roleClassNames="com.liferay.portal.kernel.security.jaas.PortalRole" />-->
+
+  <!--
+        Uncomment the following to disable persistent sessions across reboots.
+        -->
+
+  <!--<Manager pathname="" />-->
+
+  <!--
+        Uncomment the following to not use sessions. See the property
+        "session.disabled" in portal.properties.
+        -->
+
+  <!--<Manager className="com.liferay.support.tomcat.session.SessionLessManagerBase" />-->
+
+  <Resources>
+    <PreResources base="${catalina.base}/lib/ext/portal" className="com.liferay.support.tomcat.webresources.ExtResourceSet" webAppMount="/WEB-INF/lib" />
+  </Resources>
+
+  <Manager className="de.javakaffee.web.msm.MemcachedBackupSessionManager" memcachedNodes="redis://exoliferay-de.vvl537.clustercfg.euc1.cache.amazonaws.com:6379" sticky="false" sessionBackupAsync="false" lockingMode="auto" requestUriIgnorePattern=".*.(ico|png|gif|jpg|css|js)$"/>
+
+  <!-- mikko inspired
+  <Manager className="org.apache.catalina.session.PersistentManager" maxIdleBackup="1" minIdleSwap="0" maxIdleSwap="0" processExpiresFrequency="1" saveOnRestart='true'
+                >
+
+  <Store className="org.apache.catalina.session.JDBCStore" connectionURL="jdbc:postgresql://exoliferay-de-cluster.cluster-cbhent2th1nq.eu-central-1.rds.amazonaws.com:5432/exoliferay_de?user=exoliferay_de&amp;password=asdf89asdj8fsjad89fjs89dafj98sadf89fadsj89afsd" driverName="org.postgresql.Driver" sessionAppCol="app_name" sessionDataCol="session_data" sessionIdCol="session_id" sessionLastAccessedCol="last_access" sessionMaxInactiveCol="max_inactive" sessionTable="tomcat_sessions" sessionValidCol="valid_session" />
+</Manager>
+-->
+
+</Context>

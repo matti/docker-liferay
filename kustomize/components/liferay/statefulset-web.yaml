@@ -4,7 +4,6 @@ metadata:
   name: web
 spec:
   serviceName: liferay
-  replicas: 1
   selector:
     matchLabels:
       app: web

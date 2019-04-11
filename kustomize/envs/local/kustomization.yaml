@@ -8,6 +8,7 @@ bases:
 
 patchesStrategicMerge:
 - patches/liferay-web.yaml
+- patches/ingress.yaml
 
 resources:
  - namespace.yaml

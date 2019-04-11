@@ -35,6 +35,9 @@ sed -i "s#LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_URL#$LIFERAY_JDBC_PERIOD_DEFAULT_PE
 sed -i "s#LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_USERNAME#$LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_USERNAME#" jgroups_jdbc_ping.xml
 sed -i "s#LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_PASSWORD#$LIFERAY_JDBC_PERIOD_DEFAULT_PERIOD_PASSWORD#" jgroups_jdbc_ping.xml
 
+# NOTE: nano eats all ===== lines and puts them to one = (!)
+sed -i "s#<\!-- ======================== Introduction ============================== -->#<distributable />#" tomcat-9.0.10/conf/web.xml
+
 while true; do
   echo "waiting for ${DATABASE_HOST}:5432"
   nc -w 1 -z "${DATABASE_HOST}" 5432 && break
@@ -94,7 +97,7 @@ set +x
   else
     startup_delay_multiplier=${STARTUP_DELAY_MULTIPLIER:-120}
     startup_delay=$(expr ${ordinal} \* ${startup_delay_multiplier})
-    echo "sleeping ${ordinal} * 60 = ${startup_delay} to mitigate https://issues.liferay.com/browse/LPS-89569"
+    echo "sleeping ${ordinal} * ${startup_delay_multiplier} = ${startup_delay} to mitigate https://issues.liferay.com/browse/LPS-89569"
     sleep $startup_delay
 
     while true; do
@@ -120,3 +123,4 @@ while true; do
 done
 
 echo "tomcat exited!"
+exit 1
